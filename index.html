@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10131d">
+    <meta name="description" content="A voice-assisted Arduino waste sorter prototype.">
+    <title>TrashTalk — Sort it with your voice</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="src/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="TrashTalk home">
+          <span class="brand-mark" aria-hidden="true">TT</span>
+          <span>TrashTalk</span>
+        </a>
+        <span class="topbar-note">VOICE-ASSISTED SORTING</span>
+      </header>
+
+      <main id="top">
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A smarter bin starts with a sentence</p>
+          <h1 id="page-title">Say what it is.<br><span>We’ll sort it out.</span></h1>
+          <p class="intro-copy">Put a hand near the sensor, name the item, and let TrashTalk route it to the right lid.</p>
+        </section>
+
+        <section class="sorter-card" aria-labelledby="sorter-title">
+          <div class="card-heading">
+            <div>
+              <p class="step-label">YOUR SORTING STATION</p>
+              <h2 id="sorter-title">Ready when you are</h2>
+            </div>
+            <span class="connection-pill" id="connection-pill"><span class="status-dot" aria-hidden="true"></span><span id="connection-label">Arduino disconnected</span></span>
+          </div>
+
+          <div class="connection-row">
+            <button class="button button-primary" id="connect-button" type="button">Connect Arduino <span aria-hidden="true">↗</span></button>
+            <button class="button button-quiet" id="mic-test-button" type="button">Test microphone</button>
+          </div>
+
+          <div class="status-panel" role="status" aria-live="polite">
+            <span class="status-icon" id="status-icon" aria-hidden="true">●</span>
+            <p id="status-message">Connect the Arduino, then test your microphone before sorting.</p>
+          </div>
+
+          <div class="result-panel" aria-live="polite" aria-atomic="true">
+            <div class="result-topline">
+              <span class="step-label">LAST ITEM</span>
+              <span class="bin-badge" id="bin-badge" hidden></span>
+            </div>
+            <p class="spoken-item" id="spoken-item">Nothing sorted yet</p>
+            <p class="result-detail" id="result-detail">Your result will appear here. Unknown items keep the lids closed.</p>
+          </div>
+
+          <form id="manual-form" class="manual-form">
+            <label for="manual-item">Try a phrase without the hardware</label>
+            <div class="manual-input-row">
+              <input id="manual-item" name="item" type="text" maxlength="120" placeholder="e.g. a banana peel or a plastic bottle" autocomplete="off">
+              <button class="button button-secondary" type="submit">Classify</button>
+            </div>
+            <p class="form-hint">This previews the bin choice only. It never moves a servo.</p>
+          </form>
+        </section>
+
+        <section class="bin-guide" aria-labelledby="bin-guide-title">
+          <div class="section-heading">
+            <p class="step-label">CURRENT DEMO BINS</p>
+            <h2 id="bin-guide-title">Three destinations</h2>
+          </div>
+          <div class="bin-grid">
+            <article class="bin-card compost-card">
+              <span class="bin-icon" aria-hidden="true">01</span>
+              <h3>Compost</h3>
+              <p>Food scraps, peels, and coffee grounds.</p>
+            </article>
+            <article class="bin-card recycle-card">
+              <span class="bin-icon" aria-hidden="true">02</span>
+              <h3>Recycle</h3>
+              <p>Clean paper, cans, bottles, and jars.</p>
+            </article>
+            <article class="bin-card general-card">
+              <span class="bin-icon" aria-hidden="true">03</span>
+              <h3>General waste</h3>
+              <p>Wrappers, tissues, and non-recyclables.</p>
+            </article>
+          </div>
+          <p class="fine-print">This prototype uses local keyword rules. Check your local recycling guidance and update the item list to match your bins.</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>TrashTalk · Arduino + laptop browser prototype</span>
+        <span>Speech recognition is handled by the browser and may use an online service.</span>
+      </footer>
+    </div>
+  </body>
+</html>
